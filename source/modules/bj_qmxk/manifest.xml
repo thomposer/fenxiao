@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://www.we7.cc" versionCode="0.5,0.51,0.52">
+	<application setting="true">
+		<name><![CDATA[分销系统]]></name>
+		<identifie><![CDATA[bj_qmxk]]></identifie>
+		<version><![CDATA[2.8.5]]></version>
+		<type><![CDATA[business]]></type>
+		<ability><![CDATA[分销系统]]></ability>
+		<description><![CDATA[分销系统]]></description>
+		<author><![CDATA[分销系统]]></author>
+		<url><![CDATA[]]></url>
+	</application>
+	<platform>
+		<subscribes>
+			<message type="subscribe" />
+		</subscribes>
+		<handles>
+			<message type="text" />
+			<message type="subscribe" />
+		</handles>
+		<rule embed="true" />
+	</platform>
+	<bindings>
+		<cover>
+			<entry title="购物入口设置" do="list" />
+			<entry title="代理入口" do="fansindex" />
+			<entry title="排行榜入口设置" do="phb" />
+			<entry title="积分兑换入口设置" do="award" />
+		</cover>
+		<menu>
+			
+			<entry title="订单管理" do="order" />
+			<entry title="会员管理" do="charge" />
+			<entry title="代理管理" do="fansmanager" />
+			<entry title="佣金审核" do="commission" />
+			<entry title="商品管理" do="goods" />
+			<entry title="积分兑换管理" do="credit" />
+		    <entry title="数据统计" do="statistics" />
+		    <entry title="配送支付设置" do="dispatch" />
+		   <entry title="专属二维码" do="Spread" /> 
+			<entry title="广告促销设置" do="adv" />
+			<entry title="首页类型设置" do="rules" />
+			<entry title="消息通知设置" do="messagetmp" />
+		</menu>
+		
+	</bindings>
+	<install><![CDATA[install.php]]></install>
+	<uninstall><![CDATA[uninstall.php]]></uninstall>
+	<upgrade><![CDATA[upgrade.php]]></upgrade>
+</manifest>

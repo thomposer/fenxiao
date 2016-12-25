@@ -1,0 +1,262 @@
+
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <title>个人中心</title>
+    <link rel="stylesheet" type="text/css" href="{BJ_QMXK_ROOT}/recouse/css/fd.css?v={BJ_QMXK_VERSION}">
+	<link href="{BJ_QMXK_ROOT}/recouse/css/bottom.css?x={BJ_QMXK_VERSION}" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="{BJ_QMXK_ROOT}/recouse/css/fcommom1.css?v={BJ_QMXK_VERSION}">
+	<script src="{BJ_QMXK_ROOT}/recouse/js/jquery.js?v={BJ_QMXK_VERSION}"></script>
+    <script src="{BJ_QMXK_ROOT}/recouse/css/func.js?v={BJ_QMXK_VERSION}"></script>
+	<style>
+	.foot{
+		width:100%;
+		min-width:300px;
+		margin-top:10px;
+		margin-bottom:30px;
+		padding:10px 0;
+		color:#555;
+		text-align:center;
+		}
+	.foot a{
+		color:#555;
+		margin:0 3px;
+		}  
+</style>
+</head>
+
+<body class="body-gray">
+
+
+    <div class="panel memberhead">
+        <div class="header-l">
+			<img class="icon-level-p1" src="{if empty($myheadimg['avatar'])}{BJ_QMXK_ROOT}/style/images/yh.png{else}{$myheadimg['avatar']}{/if}"/>
+		</div>
+		<div class="header-r">
+            <ul class="distributor-infor">
+                <li><span class="distributor-infor-label">昵称：</span><span class="distributor-infor-c">{$profile['realname']}</span></li>
+                <li><span class="distributor-infor-label">ID号：</span><span class="distributor-infor-c">{$memid}</span></li>				
+                <li><span class="distributor-infor-label">等级：</span><span class="distributor-infor-c">{if $profile['flag']==0}普通会员{else}{$medal_name}{/if}(<a class="txt-link"href="{php echo $this->createMobileUrl('list')}" >  {if $profile['flag']==0}{$tmsg}</a> {else}分享微店赚佣金{/if}</a>)</span>
+                </li>
+                <li><span class="distributor-infor-label">关注：</span><span class="distributor-infor-c">
+                   {php echo date('Y-m-d', $profile['createtime'])}</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    </div>
+    <!--head end-->
+    <!--count begin-->
+    <div class="row count">
+        <div class="small-4 large-3 columns mid">
+        	 	{if CUSTOMER_CODE=='001HEML'}
+        	 <a href="#" class="count-a">
+                <p class="count-dis-mony">{$priceTotal}</p>
+                <span class="count-title">销售总额</span></a>
+                		{else} 
+                		 <a href="#" class="count-a">
+                <p class="count-dis-mony">{$myheadimg['credit1']}</p>
+                <span class="count-title">总积分</span></a>
+                		{/if} 
+        </div>
+        <div class="small-4 large-3 columns mid">
+        	  	 	{if CUSTOMER_CODE=='001HEML'}
+        	 <a href="#" class="count-a">
+                <p class="count-dis-mony">{$commissionTotal}</p>
+                <span class="count-title">分销金额</span></a>
+                			{else} 
+                	<a href="#" class="count-a">
+                <p class="count-dis-mony">{$profile['credit2']}</p>
+                <span class="count-title">账户余额</span></a>
+                	{/if} 
+            <!-- -->
+        </div>
+		
+       <div class="small-4 large-3 columns last">
+            <a href="#" class="count-a">
+                <p class="count-dis-mony">{$profile['commission']}</p>
+                <span class="count-title">已结佣金</span></a>
+        </div>
+	
+    </div>
+    <!--count end-->
+    
+    	  
+        <div class="text-center" style=" margin-top:5px;margin-bottom:5px; font-size:14px;">
+        	 	{if !empty($shareprofile['realname'])}
+        	你是由【{$shareprofile['realname']}】推荐
+        		{else} 
+        	你是由【{$_W['account']['name']}】推荐
+         	{/if} 
+        </div>
+         
+        
+            	
+		  	{if $profile['flag']==1}
+	   <div class="panel member-nav">
+        <ul class="side-nav">
+       {if $profile['flag']==1}
+				 <li><a href="{php echo $this->createMobileUrl('Erwema')}"><i class="icon-qrcode"></i><span class="text">我的二维码</span><i class="arrow"></i></a></li>
+           	{/if} 
+           
+              {if $profile['flag']==1&&$commtime['ischeck']==2}
+				 <li><a href="{php echo $this->createMobileUrl('dzd',array('op'=>'setting'))}"><i class="icon-account"></i><span class="text">我要开店</span><i class="arrow"></i></a></li>
+        
+           	    {if false&&$profile['flag']==1&&$profile['dzdflag']==1}
+				 <li><a href="{php echo $this->createMobileUrl('list',array('dzdid'=>$profile['id']))}"><i class="icon-qrcode"></i><span class="text">我的小店</span><i class="arrow"></i></a></li>
+           	{/if}    	{/if} 
+			<li>
+                <a id="disstroe" href="javascript:void(0)"><i class="icon-lowLevel"></i><span class="text">{if $profile['flag']==1&&$profile['dzdflag']==1&&$commtime['ischeck']==2} 小店会员{else}我的会员{/if}</span><i class="arrow"></i> <span class="tip-number">{$count}</span>
+                    
+                </a>
+                <div id="disstroe-sub" class="member-nav-sub" style="display: none;">
+                    <ul class="member-nav-sub-ul">
+               {if CUSTOMER_CODE=='001HEML'}
+                        <li class="member-nav-sub-li"  id="shop"><a href="{php echo $this->createMobileUrl('myfansDetail',array('level'=>1,'flag'=>0))}"><span class="text">一级普通会员</span><i class="arrow"></i>
+                            
+                       <span class="tip-number">{$count1}</span> </a></li>
+                       	
+                       	 <li class="member-nav-sub-li"  id="shop"><a href="{php echo $this->createMobileUrl('myfansDetail',array('level'=>1,'flag'=>1))}"><span class="text">一级销售代理</span><i class="arrow"></i>
+                            
+                       <span class="tip-number">{$count1_1}</span> </a></li>
+											   {if $cfg['globalCommissionLevel']>=2}
+						            <li class="member-nav-sub-li" id="subShop"><a href="{php echo $this->createMobileUrl('myfansDetail',array('level'=>2,'flag'=>0))}"><span class="text">二级普通会员</span><i class="arrow"></i>
+                            
+                       <span class="tip-number">{$count2}</span> </a></li>
+                       	           <li class="member-nav-sub-li" id="subShop"><a href="{php echo $this->createMobileUrl('myfansDetail',array('level'=>2,'flag'=>1))}"><span class="text">二级销售代理</span><i class="arrow"></i>
+                            
+                       <span class="tip-number">{$count2_1}</span> </a></li>
+                       	
+                       	{/if}
+										     {if $cfg['globalCommissionLevel']>=3}
+											<li class="member-nav-sub-li"  id="subShop1"><a href="{php echo $this->createMobileUrl('myfansDetail',array('level'=>3,'flag'=>0))}"><span class="text">三级普通会员</span><i class="arrow"></i>
+                            
+                       <span class="tip-number">{$count3}</span> </a></li>
+                       		<li class="member-nav-sub-li"  id="subShop1"><a href="{php echo $this->createMobileUrl('myfansDetail',array('level'=>3,'flag'=>1))}"><span class="text">三级销售代理</span><i class="arrow"></i>
+                            
+                       <span class="tip-number">{$count3_1}</span> </a></li>
+                       	
+                       	{/if}
+                       	
+                {else} 
+                
+                           <li class="member-nav-sub-li"  id="shop"><a href="{php echo $this->createMobileUrl('myfansDetail',array('level'=>1))}"><span class="text">一级普通会员</span><i class="arrow"></i>
+                            
+			                       <span class="tip-number">{php echo $count1+$count1_1}</span> </a></li>
+			                       	
+			                          {if $cfg['globalCommissionLevel']>=2}
+									            <li class="member-nav-sub-li" id="subShop"><a href="{php echo $this->createMobileUrl('myfansDetail',array('level'=>2))}"><span class="text">二级普通会员</span><i class="arrow"></i>
+			                            
+			                       <span class="tip-number">{php echo $count2+$count2_1}</span> </a></li>
+			                       	  
+			                       	{/if}
+													     {if $cfg['globalCommissionLevel']>=3}
+														<li class="member-nav-sub-li"  id="subShop1"><a href="{php echo $this->createMobileUrl('myfansDetail',array('level'=>3))}"><span class="text">三级普通会员</span><i class="arrow"></i>
+			                            
+			                       <span class="tip-number">{php echo $count3+$count3_1}</span> </a></li>
+			                        	
+			                       	{/if}
+                
+                {/if} 
+                    </ul>
+                </div>
+            </li>
+			
+			<li>
+                <a id="disstroe1" href="javascript:void(0)"><i class="icon-set"></i><span class="text">{if $profile['flag']==1&&$profile['dzdflag']==1&&$commtime['ischeck']==2} 小店推广数据{else}我的推广{/if}</span><i class="arrow"></i> <span class="tip-number">{php echo ($clickcount+$followcount)}</span>
+                    
+                </a>
+                <div id="disstroe-sub1" class="member-nav-sub" style="display: none;">
+                    <ul class="member-nav-sub-ul">
+                         <li class="member-nav-sub-li"  id="shop2"><a href="{php echo $this->createMobileUrl('fansorder')}"><span class="text">{if $profile['flag']==1&&$commtime['ischeck']==2} 小店订单{else}推广订单{/if}</span><i class="arrow"></i></a></li>
+                            
+                        <li class="member-nav-sub-li" id="subShop3"><a href="{php echo $this->createMobileUrl('myfansDetail',array('level'=>4))}"><span class="text">推广点击</span><i class="arrow"></i> <span class="tip-number">{$clickcount}</span></a></li>
+                            
+                       <li class="member-nav-sub-li" id="subShop4"><a href="{php echo $this->createMobileUrl('myfansDetail',array('level'=>5))}"><span class="text">成功关注</span><i class="arrow"></i><span class="tip-number">{$followcount}</span></a></li>
+                    </ul>
+                </div>
+            </li>
+			
+              <li class="last"><a href="{php echo $this->createMobileUrl('commission')}"><i class="icon-commission"></i><span class="text">佣金提现</span><i class="arrow"></i></a></li>
+			
+        </ul>
+    </div>
+	
+	
+	{/if}
+	
+	
+	
+
+   
+
+    <div class="panel member-nav">
+        <ul class="side-nav">
+		
+           		{if !empty($_W['account']['payment']['wechat']['switch'])&&!empty($_W['account']['payment']['credit']['switch'])}
+					<li><a href="{php echo $this->createMobileUrl('rechargecredit2')}"><i class="icon-passowrd"></i><span class="text">余额充值</span><i class="arrow"></i></a></li>
+			{/if}
+			  <li><a href="{php echo $this->createMobileUrl('register', array('id'=>$profile['id'], 'opp'=>'complate'))}"><i class="icon-ratio"></i><span class="text">资料修改</span><i class="arrow"></i></a></li>
+			  <li><a href="{php echo $this->createMobileUrl('award')}"><i class="icon-personal"></i><span class="text">积分兑换</span><i class="arrow"></i></a></li>
+                  <li><a href="{php echo $this->createMobileUrl('phb')}"><i class="icon-card"></i><span class="text">销售排行榜</span><i class="arrow"></i> </a></li>
+			
+         <li><a href="{php echo $this->createMobileUrl('rule')}"><i class="icon-client"></i><span class="text">帮助说明</span><i class="arrow"></i></a></li>
+
+        </ul>
+    </div>
+
+
+
+	
+
+    <!--side nav end-->
+	
+   
+ <!--bottom begin
+    <div class="h50"></div>-->
+  {template 'footer'}
+   <!--bottom end-->
+	
+{template 'wx_nav'}
+</body>
+<script src="{BJ_QMXK_ROOT}/style/js/zepto.min.js"></script>
+<script>
+function report(){
+	if({$credit}!=-1){
+		return;
+	}
+	$.ajax({
+		type: "POST",
+		url: "{php echo $this->createMobileurl('home',array('op'=>'report'))}",
+		dataType: "text",
+		
+		success: function (d) {
+			if(d!=0){
+				window.document.getElementById('wxqd').innerHTML = '获得'+d+'分';
+				var credit = parseInt(window.document.getElementById('mygold').innerHTML);
+				var credit1 = credit + parseInt(d);
+				window.document.getElementById('mygold').innerHTML = credit1;
+			}
+		},
+		
+		error: function (xml, text, thrown){
+			TopBox.alert("出错啦!");
+		}
+	});
+}
+
+</script>
+
+{template 'jsweixin'}
+ <script>
+   document.getElementById('wxloading').style.display='none';
+   	</script>
+</html>
+   	</script>
+</html>

@@ -1,0 +1,10 @@
+{template 'common/header'}
+<ul class="nav nav-tabs">
+	
+	<li {if $op == 'display'}class="active"{/if}><a href="{php echo $this->createWebUrl('printer', array('op' => 'create_express'));}">新建快递单模板管理</a></li>
+	<li><a href="{php echo $this->createWebUrl('printer', array('op' => 'express'))}">快递单打印管理</a></li>
+	
+	<li {if $op == 'display'}class="active"{/if}><a href="{php echo $this->createWebUrl('printer', array('op' => 'create_normal'));}">新建发货单打印模板</a></li>
+	<li {if $op == 'display'}class="active"{/if}><a href="{php echo $this->createWebUrl('printer', array('op' => 'normal'));}">发货单打印模板管理</a></li>
+	
+</ul>

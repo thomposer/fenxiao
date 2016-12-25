@@ -1,0 +1,36 @@
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js?v=20150120"></script>
+<script type="text/javascript">
+var wxData = {
+            "imgUrl" : "{$signPackage['imgUrl']}",
+            "link" : "{$signPackage['link']}",
+            "desc" : "{$signPackage['description']}",
+            "title" : "{$signPackage['title']}"
+};
+wx.config({
+    debug: false,
+    appId: "{$signPackage['appId']}",
+    timestamp: {$signPackage['timestamp']}, 
+    nonceStr: "{$signPackage['nonceStr']}", 
+    signature: "{$signPackage['signature']}",
+     jsApiList: [
+        'checkJsApi',
+        'onMenuShareTimeline',
+        'onMenuShareAppMessage',
+        'onMenuShareQQ',
+        'onMenuShareWeibo'
+      ]
+});
+wx.error(function(res){
+	if('{$signPackage['signature']}'!='')
+	{
+		if('{$checkjsweixin}'=='1')
+	{
+		if(res.errMsg='config:invalid signature')
+		{
+			//alert("转发接口失效，请联系管理员");
+		}
+	}
+	}
+});	
+</script>
+<script src="{BJ_QMXK_ROOT}/style/js/wxaction.js?v=2015012103"></script>
